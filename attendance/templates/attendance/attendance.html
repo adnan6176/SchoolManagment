@@ -1,0 +1,71 @@
+{% extends 'attendance/orange/blank-page.html' %}
+
+
+
+
+{% block content %}
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Attendence</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">View Attendence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card mb-0">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0"></h4>
+                        <p class="card-text">
+                            {{class_x}} {{date}}
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="datatable table table-stripped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Roll Number</th>
+                                        <th>Present</th>
+                                        <th>Teacher</th>
+                                        <th>Submit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for attendance in attendances %}
+                                    <tr>
+                                        <td>{{attendance.student_id.name}}</td>
+                                        <td>{{attendance.student_id.roll_number}}</td>
+                                        <td><span class="badge badge-warning bg-success">{{attendance.present}} </span>
+                                        </td>
+                                        <td>{{attendance.teacher}}</td>
+                                        <td>{{attendance.submit_date}}</td>
+                                    </tr>
+
+                                    {% endfor%}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'attendance/orange/blank-page.html' %}
+
+
+
+
+{% block content %}
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Attendence</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">View Attendence</li>
+
+
+                    </ul>
+                    <!-- {{tts}} -->
+                    <!-- {{teacher}} -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card mb-0">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0"></h4>
+                        <p class="card-text">
+                            {{class_x}} {{date}}
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="datatable table table-stripped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thur</th>
+                                        <th>Fri</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for period in periods %}
+                                    <tr>
+                                        <th class="border" id="myButton" >{{period}}</th>
+                                        <th class="myBox border" id="0{{period}}"></th>
+                                        <th class="myBox border" id="1{{period}}"></th>
+                                        <th class="myBox border" id="2{{period}}"></th>
+                                        <th class="myBox border" id="3{{period}}"></th>
+                                        <th class="myBox border" id="4{{period}}"></th>
+                                    </tr>
+                                    {% endfor%}
+
+
+                                    {% for entry in tts%}
+
+                                    <script>
+                                        document.getElementById("{{entry.day.dayNum}}{{entry.period}}").innerHTML = "{{entry.class_name}}";
+                                    </script>
+
+
+                                    {% endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <a href="employees.html#" class="btn add-btn" data-bs-toggle="modal"
+								data-bs-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+							<div class="view-icons"> -->
+
+
+    
+    {% if user.is_superuser %}
+    <div id="add_employee" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Employee</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action=""> 
+                       {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div id="display"></div>
+
+                                    <input id="period" name="period"  value="102" type="text" hidden>
+                                    <input id="dayName" name="dayName" value="44" type="text" hidden>
+                                    <input id="teacherName" name="teacherNum" value="{{teacher.id}}" type="text" hidden>
+
+                                    <label for="className">View Attendance:</label>
+                                    <select class="form-control" name="className" id="className">
+                                        {% for class in className %}
+                                        <option value="{{class.id}}">{{class}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery(".myBox").click(function () {
+            var btn = document.getElementById("add_employee");
+            // alert("Hello");
+            $('#add_employee').modal('show');
+            var periodVar = document.getElementById("period");
+            var dayVar = document.getElementById("dayName");
+         
+            var id_value = this.id;
+            periodVar.value=id_value.charAt(1);
+            dayVar.value = id_value.charAt(0);
+            
+            
+            var varDisplay = document.getElementById("display");
+            varDisplay.innerHTML = this.id;
+
+        });
+    });
+
+    // var btn = document.getElementById("myButton");
+
+
+    // var modal = document.getElementById("add_employee");
+
+    // // When the user clicks the button, open the modal 
+    // btn.onclick = function () {
+    //     modal.style.display = "block";
+        
+    //     // alert("Hello")
+    // }
+
+</script>
+
+{% endblock %}

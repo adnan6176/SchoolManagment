@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<meta name="description" content="Smarthr - Bootstrap Admin Template">
+	<meta name="keywords"
+		content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
+	<meta name="robots" content="noindex, nofollow">
+	<title>Register - HRMS admin template</title>
+
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}">
+
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+	<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+
+	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body class="account-page">
+
+	<div class="main-wrapper">
+		<div class="account-content">
+			<!-- <a href="job-list.html" class="btn btn-primary apply-btn">Apply Job</a> -->
+			<div class="container">
+
+				<div class="account-logo">
+					<a href="index.html"><img src="{% static 'assets/img/logo2.png' %}" alt="Dreamguy's Technologies"></a>
+				</div>
+
+				<div class="account-box">
+					<div class="account-wrapper">
+						<h3 class="account-title">Register</h3>
+						<p class="account-subtitle">Access to our dashboard</p>
+						<p class="account-subtitle bg-danger">{{myMsg}}</p>
+
+						<form action="" method ='POST'>
+
+							{% csrf_token %}
+
+							<div class="form-group">
+								<!-- <p><label for="id_username">Username:</label> <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username"> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p> -->
+								<label for="id_username">Username</label>
+								<input class="form-control" type="text" name="username" maxlength="150"
+									autocapitalize="none" autocomplete="username" id="id_username" required>
+							</div>
+
+							<div class="form-group">
+								<!-- <p><label for="id_password1">Password:</label> <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"> <span class="helptext"></span></p><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul><p></p> -->
+
+
+								<label for="id_password1" >Password</label>
+								<input class="form-control" type="password" name="password1" autocomplete="new-password" id="id_password1" required>
+
+
+							</div>
+							<div class="form-group">
+
+								<label for="id_password2" >Repeat Password</label>
+								<input class="form-control" type="password" name="password2" autocomplete="new-password" id="id_password2" required>
+
+
+							</div>
+							<div class="form-group text-center">
+								<button class="btn btn-primary account-btn" type="submit">Register</button>
+							</div>
+							<div class="account-footer">
+								<p>Already have an account? <a href="{% url 'loginuser1' %}">Login</a></p>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+	<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+	<script src="{% static 'assets/js/app.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+{% extends 'attendance/orange/blank-page.html' %}
+
+{% block content %}
+<div class="page-wrapper">
+
+	<div class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="welcome-box">
+					<div class="welcome-img">
+						<img alt="" src="{{teacher.profile_pic.url}}" style="height:60px;">
+					</div>
+					<div class="welcome-det">
+						<h3>{{teacher.FirstName}} {{teacher.lastName}}</h3>
+						<p>{{today_day}} {{today_date}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<section class="dash-section">
+					<h1 class="dash-sec-title">Today</h1>
+
+
+
+					<div class="dash-sec-content">
+
+						{% if today_tts.count == 0 %}
+
+						<div class="dash-info-list">
+							<a href="" class="dash-card text-danger">
+								<div class="dash-card-container">
+
+									<div class="dash-card-content">
+										<!-- {{entry}} -->
+										<p>No Class</p>
+									</div>
+
+								</div>
+							</a>
+						</div>
+						{% endif %}
+						<!-- {{today_tts}} -->
+						{% for entry in today_tts %}
+						<div class="dash-info-list">
+							<a href="employee-dashboard.html#" class="dash-card text-danger">
+								<div class="dash-card-container">
+
+									<div class="dash-card-content">
+										<!-- {{entry}} -->
+										<p>You are assigned to {{entry.class_name}} for period {{entry.period}}</p>
+									</div>
+
+								</div>
+							</a>
+						</div>
+						{% endfor %}
+
+
+
+
+					</div>
+				</section>
+
+
+
+				<section class="dash-section">
+					<h1 class="dash-sec-title">Tomorrow</h1>
+					<!-- {{tomorrow}} -->
+
+
+
+
+					<div class="dash-sec-content">
+
+
+
+						{% if tomorrow.count == 0 %}
+
+						<div class="dash-info-list">
+							<a href="" class="dash-card text-danger">
+								<div class="dash-card-container">
+
+									<div class="dash-card-content">
+										<!-- {{entry}} -->
+										<p>No Class</p>
+									</div>
+
+								</div>
+							</a>
+						</div>
+						{% endif %}
+
+
+						{% for entry in tomorrow %}
+						<div class="dash-info-list">
+							<a href="employee-dashboard.html#" class="dash-card text-danger">
+								<div class="dash-card-container">
+
+									<div class="dash-card-content">
+										<!-- {{entry}} -->
+										<p>You are assigned to {{entry.class_name}} for period {{entry.period}}</p>
+									</div>
+
+								</div>
+							</a>
+						</div>
+						{% endfor %}
+
+
+
+					</div>
+
+
+				</section>
+
+
+
+
+
+
+
+				<section class="dash-section">
+					<h1 class="dash-sec-title">Next seven days</h1>
+					<!-- {{next7days}} -->
+					<div class="dash-sec-content">
+
+
+
+						<div class="dash-info-list">
+
+							{% if next7days.count == 0 %}
+
+							<div class="dash-info-list">
+								<a href="" class="dash-card text-danger">
+									<div class="dash-card-container">
+
+										<div class="dash-card-content">
+											<!-- {{entry}} -->
+											<p>No Class</p>
+										</div>
+
+									</div>
+								</a>
+							</div>
+							{% endif %}
+
+							{% for entry in next7days %}
+							<div class="dash-info-list">
+								<a href="" class="dash-card text-danger">
+									<div class="dash-card-container">
+										<div class="dash-card-icon">
+											<!-- <i class="fa fa-hourglass-o"></i> -->
+										</div>
+										<div class="dash-card-content">
+											<!-- {{entry}} -->
+											<p>You are assigned to class {{entry.class_name}} for period
+												{{entry.period}} on {{ entry.day.dayName }}</p>
+										</div>
+
+									</div>
+								</a>
+							</div>
+							{% endfor %}
+
+						</div>
+
+
+
+
+
+
+					</div>
+				</section>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+<script>
+
+
+</script>
+
+{% endblock %}

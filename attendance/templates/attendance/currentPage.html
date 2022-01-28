@@ -1,0 +1,74 @@
+{% extends 'attendance/base.html' %}
+
+
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="card col-12">
+
+    <h2 class="text-center alert alert-success">
+        login as {{ user.username }}
+    </h2>
+
+    <form action="{% url 'logoutuser' %}" method="post" class="text-center alert alert-success">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-lg"> Logout</button>
+    </form>
+
+
+</div>
+
+{% else %}
+<div class="card col-12">
+    {% csrf_token %}
+    <a href="{% url 'loginuser' %}" type="submit" class="btn btn-success btn-lg"> Login</a>
+</div>
+{% endif %}
+
+<div class="row">
+
+    <div class="col-6 alert alert-info text-center">
+        <form action="{% url 'viewAttendance' %}" , method="POST">
+            {% csrf_token %}
+            <label for="className">View Attendance:</label>
+            <select name="className" id="className">
+                {% for class in className %}
+                <option value="{{class.id}}">{{class}}</option>
+                {% endfor %}
+            </select>
+            <div>
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+
+            </div>
+            <button class="btn btn-sm bg-success mx-auto " type="submit">Go</button>
+        </form>
+    </div>
+
+    <div class="col-6 alert alert-info text-center">
+        <form action="{% url 'makeAttendance' %}" , method="GET">
+            <!-- {% csrf_token %} -->
+            <label for="className">Make Attendance:</label>
+            <select name="className" id="className">
+                {% for class in className %}
+                <option value="{{class.id}}">{{class}}</option>
+                {% endfor %}
+            </select>
+            <div>
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+                
+            </div>
+            <button class="btn btn-sm bg-success mx-auto " type="submit">Go</button>
+        </form>
+    </div>
+
+</div>
+
+
+<!-- {% include 'attendance/navbar.html' %} -->
+
+{% endblock %}

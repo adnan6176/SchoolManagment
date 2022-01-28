@@ -1,0 +1,162 @@
+{% extends 'attendance/orange/blank-page.html' %}
+
+{% block content %}
+<div class="page-wrapper">
+
+	<div class="content container-fluid">
+
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3 class="page-title">Welcome Admin!</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item active">Dashboard</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<!-- Projects card -->
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
+						<div class="dash-widget-info">
+							<h3>112</h3>
+							<!-- fill total number of student -->
+							<span>Students</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
+						<div class="dash-widget-info">
+							<!-- number of teacher -->
+							<h3>44</h3>
+							<span>Teachers</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon"><i class="fa fa-diamond"></i></span>
+						<div class="dash-widget-info">
+							<h3>20</h3>
+							<span>Staffs</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon"><i class="fa fa-user"></i></span>
+						<div class="dash-widget-info">
+							<h3>218</h3>
+							<span>Awards</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+		<div class="row">
+
+
+			<div class="col-md-12 d-flex">
+				<div class="card card-table flex-fill">
+					<div class="card-header">
+						<h3 class="card-title mb-0">Teachers</h3>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table custom-table mb-0">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Status</th>
+										<th class="text-end">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+
+
+
+									<!-- Fill teachers information below -->
+									<!-- teachers is passed as teachers -->
+								
+									{% for teacher in teachers %}
+									
+									<tr>
+										<td>
+											<h2 class="table-avatar">
+												<a href="index.html#" class="avatar"><img alt=""
+														src="{{teacher.profile_pic.url}}" style="height: 100%;"></a>
+												<a href="client-profile.html">{{teacher.FirstName}}
+													{{teacher.lastName}}<span>{{teacher.role}}</span></a>
+											</h2>
+										</td>
+										<td><a href="">{{teacher.email}}</a></td>
+										<td>
+											<div class="action-label">
+												<a class="btn btn-white btn-sm btn-rounded"
+													href="index.html#" data-bs-toggle="dropdown"
+													aria-expanded="false">
+													Present
+												</a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="index.html#"><i
+															class="fa fa-dot-circle-o text-success"></i>
+														Active</a>
+													<a class="dropdown-item" href="index.html#"><i
+															class="fa fa-dot-circle-o text-danger"></i>
+														Inactive</a>
+												</div>
+											</div>
+										</td>
+										<td class="text-end">
+											<div class="">
+												<a class="" href="index.html#">{{teacher.subject}}</a>
+											</div>
+										</td>
+									</tr>
+									{% endfor %}
+
+
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a href="{% url 'teacherProfilePage' %}">Viewteachers</a>
+					</div>
+				</div>
+
+
+			</div>
+
+
+
+
+		</div>
+
+
+		<!--  -->
+	</div>
+
+</div>
+{% endblock %}
